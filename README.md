@@ -24,7 +24,7 @@ cluster2:
     - k8s1
 
 cluster3:
-  my k8s:
+  my k8s: # subclusters are also supported
     k8s1:
       - diagrams.gcp.compute.GKEOnPrem
 
