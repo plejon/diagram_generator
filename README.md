@@ -2,9 +2,13 @@
 define your diagram using yaml syntax
 
 ## usage
-Make a file named "inventory.yml" with your desired diagram nodes.
+Make a file named "inventory.yml" with your desired diagram nodes.  
+Used python Diagrams lib
 
-> example
+> nodes can be found here  
+> https://diagrams.mingrammer.com/docs/nodes/aws
+
+#### example
 ```yaml
 diagram_name: "mydiag" # required, name of the diagram
 cluster1: # cluster of nodes
