@@ -24,8 +24,9 @@ cluster2:
     - k8s1
 
 cluster3:
-  k8s1:
-    - diagrams.gcp.compute.GKEOnPrem
+  my k8s:
+    k8s1:
+      - diagrams.gcp.compute.GKEOnPrem
 
 
 cluster4:
