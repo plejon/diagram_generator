@@ -10,7 +10,7 @@ $ ./main.py example.yml
 #### example
 ```yaml
 ---
-diagram_name: "mydiag" # required, name of the diagram
+diagram_name: "mydiagram" # required, name of the diagram
 Azure: # cluster
   dev: # child cluster with nodes
     sql:
@@ -41,4 +41,4 @@ annother cluster:
     - diagrams.azure.compute.VMWindows
 ```
 Output from above yaml
-![result](./mydiag.png)
+![result](./mydiagram.png)

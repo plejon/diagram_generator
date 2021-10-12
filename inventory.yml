@@ -1,5 +1,5 @@
 ---
-diagram_name: "mydiag" # required, name of the diagram
+diagram_name: "mydiagram" # required, name of the diagram
 Azure: # cluster
   dev: # child cluster with nodes
     sql:
