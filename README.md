@@ -1,39 +1,44 @@
-## Diagram generator
-define your diagram using yaml syntax
+# diagram generator
+This is based on the python lib diagrams.  
+see ```requirements.txt```
 
-## usage
-Make a file named "inventory.yml" with your desired diagram nodes.  
-Used python Diagrams lib
-
-> nodes can be found here  
-> https://diagrams.mingrammer.com/docs/nodes/aws
-
+#### how to run
+```bash
+$ python3 main.py example.yml
+$ ./main.py example.yml
+```
 #### example
 ```yaml
+---
 diagram_name: "mydiag" # required, name of the diagram
-cluster1: # cluster of nodes
-  vm1: # cluster member
-    - diagrams.azure.compute.VMLinux # first list entry always specify node icon shape
-    # all following list items specify connection points to other nodes/cluster
-    - ["myfunc"] # list entry specify connection to node parent cluster
-    - k8s1 # string specifies connection to another node
-
-cluster2:
-  vm2:
+Azure: # cluster
+  dev: # child cluster with nodes
+    sql:
+      - diagrams.azure.compute.VMWindows # first list entry always specify node icon shape
+      # all following  indices specify connection points to other nodes/clusters
+      - elastic
+    win:
+      - diagrams.azure.compute.VMWindows
+      - sql
+      - mail
+      - {"rabbitmq": "TCP/5672\nTCP/5555"} # dict specify connection with label. looks awful in big diagrams
+      - elastic
+    elastic:
+      - diagrams.azure.compute.VMLinux
+      - sql
+    mail:
+      - diagrams.azure.compute.VMLinux
+    rabbitmq:
+      - diagrams.azure.compute.VMLinux
+      - ["host1"]
+    k8s clusters: # grand child cluster
+      k8s:
+        - diagrams.azure.compute.KubernetesServices
+        - win
+        - rabbitmq
+annother cluster:
+  host1:
     - diagrams.azure.compute.VMWindows
-    - k8s1
-
-cluster3:
-  my k8s: # subclusters are also supported
-    k8s1:
-      - diagrams.gcp.compute.GKEOnPrem
-
-
-cluster4:
-  myfunc:
-    - diagrams.gcp.compute.Functions
-    - k8s1
-
 ```
-image of diagram is saved in current dir as "diagram_name".png
+Output from above yaml
 ![result](./mydiag.png)
